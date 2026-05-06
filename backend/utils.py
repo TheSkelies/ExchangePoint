@@ -1,0 +1,40 @@
+def user_to_response(user) -> dict:
+    return {
+        "id": user.id,
+        "last_name": user.last_name,
+        "first_name": user.first_name,
+        "middle_name": user.middle_name,
+        "birth_date": user.birth_date,
+        "role": user.role,
+        "login": user.login,
+    }
+
+
+def currency_to_response(currency) -> dict:
+    return {
+        "id": currency.id,
+        "name": currency.name,
+    }
+
+
+def user_balance_to_response(user_balance, current_user = None) -> dict:
+    balances = []
+
+    if current_user is not None:
+        for balance in user_balance:
+            if balance['user_id'] == current_user['id']:
+                balances.append({balance['currency_id']: balance['balance']})
+
+        return {
+            "balances": balances,
+        }
+    return {}
+
+
+def exchange_rate_to_response(exchange_rate) -> dict:
+    return {
+        "id": exchange_rate.id,
+        "sell_currency_id": exchange_rate.sell_currency_id,
+        "buy_currency_id": exchange_rate.buy_currency_id,
+        "rate": exchange_rate.rate,
+    }
