@@ -17,18 +17,19 @@ def currency_to_response(currency) -> dict:
     }
 
 
-def user_balance_to_response(user_balance, current_user = None) -> dict:
+def user_balance_to_response(user_balance, current_user=None) -> dict:
+    if current_user is None:
+        return {}
+
     balances = []
+    for row in user_balance:
+        if row.user_id == current_user["id"]:
+            balances.append({
+                "currency_id": row.currency_id,
+                "balance": str(row.balance),
+            })
 
-    if current_user is not None:
-        for balance in user_balance:
-            if balance['user_id'] == current_user['id']:
-                balances.append({balance['currency_id']: balance['balance']})
-
-        return {
-            "balances": balances,
-        }
-    return {}
+    return {"balances": balances}
 
 
 def exchange_rate_to_response(exchange_rate) -> dict:
