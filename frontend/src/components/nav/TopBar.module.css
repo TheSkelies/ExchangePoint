@@ -1,0 +1,59 @@
+.topbar {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(16, 24, 40, 0.08);
+}
+
+.spacer {
+    flex: 1;
+}
+
+.menuBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    background: rgba(255, 255, 255, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.menuBtn span {
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(16, 24, 40, 0.7);
+    display: block;
+}
+
+.profileBtn {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(80% 80% at 30% 30%, rgba(160, 120, 255, 0.35), rgba(80, 200, 255, 0.2)),
+    rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    color: rgba(16, 24, 40, 0.75);
+}
+
+@media (max-width: 960px) {
+    .menuBtn {
+        display: inline-flex;
+    }
+}

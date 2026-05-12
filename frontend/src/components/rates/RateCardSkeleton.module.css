@@ -1,0 +1,63 @@
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 14px 40px rgba(16, 24, 40, 0.08);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.mid {
+    flex: 1;
+    min-width: 0;
+}
+
+.block {
+    border-radius: 12px;
+    background: linear-gradient(
+            90deg,
+            rgba(16, 24, 40, 0.08) 0%,
+            rgba(16, 24, 40, 0.12) 45%,
+            rgba(16, 24, 40, 0.08) 80%
+    );
+    background-size: 220% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+}
+
+.line1 {
+    height: 16px;
+    width: 56%;
+}
+
+.line2 {
+    margin-top: 10px;
+    height: 12px;
+    width: 78%;
+    border-radius: 10px;
+}
+
+.pill {
+    height: 38px;
+    width: 96px;
+    border-radius: 12px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 120% 0;
+    }
+    100% {
+        background-position: -120% 0;
+    }
+}

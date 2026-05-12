@@ -1,0 +1,77 @@
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 14px 40px rgba(16, 24, 40, 0.08);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: rgba(16, 24, 40, 0.75);
+    border: 1px solid rgba(16, 24, 40, 0.06);
+}
+
+.blue {
+    background: radial-gradient(80% 80% at 30% 30%, rgba(122, 200, 255, 0.45), rgba(122, 200, 255, 0.2)),
+    rgba(255, 255, 255, 0.85);
+}
+
+.pink {
+    background: radial-gradient(80% 80% at 30% 30%, rgba(255, 140, 200, 0.45), rgba(255, 140, 200, 0.18)),
+    rgba(255, 255, 255, 0.85);
+}
+
+.pair {
+    min-width: 0;
+    flex: 1;
+}
+
+.codes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.code {
+    font-size: 14px;
+}
+
+.arrow {
+    color: rgba(16, 24, 40, 0.4);
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ratePill {
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    background: rgba(247, 249, 255, 0.9);
+    color: rgba(16, 24, 40, 0.8);
+    min-width: 88px;
+    text-align: center;
+}
