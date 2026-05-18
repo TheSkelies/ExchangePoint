@@ -32,10 +32,11 @@ def user_balance_to_response(user_balance, current_user=None) -> dict:
     return {"balances": balances}
 
 
-def exchange_rate_to_response(exchange_rate) -> dict:
+def exchange_rate_to_response(rate):
     return {
-        "id": exchange_rate.id,
-        "sell_currency_id": exchange_rate.sell_currency_id,
-        "buy_currency_id": exchange_rate.buy_currency_id,
-        "rate": exchange_rate.rate,
+        "id": rate.id,
+        "sell_currency_id": rate.sell_currency_id,
+        "buy_currency_id": rate.buy_currency_id,
+        "rate": float(rate.rate),
+        "is_active": bool(getattr(rate, "is_active", True)),
     }

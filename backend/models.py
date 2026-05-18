@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, DateTime, ForeignKey, Numeric
+from sqlalchemy import Column, Integer, String, Date, DateTime, ForeignKey, Numeric, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from database import Base
@@ -6,7 +6,7 @@ from database import Base
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     last_name = Column(String(100), nullable=False)
     first_name = Column(String(100), nullable=False)
     middle_name = Column(String(100), nullable=True)
@@ -14,9 +14,9 @@ class User(Base):
     role = Column(String(30), nullable=False)
     login = Column(String(64), nullable=False, unique=True)
     password_hash = Column(String(255), nullable=False)
-    card_number_hash = Column(String(255), nullable=False)
-    card_expiry_hash = Column(String(255), nullable=False)
-    card_cvc_hash = Column(String(255), nullable=False)
+    card_number_hash = Column(String(255), nullable=True)
+    card_expiry_hash = Column(String(255), nullable=True)
+    card_cvc_hash = Column(String(255), nullable=True)
 
     balances = relationship(
         "UserBalance",
@@ -32,7 +32,7 @@ class User(Base):
 class Currency(Base):
     __tablename__ = "currencies"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(3), nullable=False, unique=True)
 
     user_balances = relationship(
@@ -72,10 +72,12 @@ class UserBalance(Base):
 class ExchangeRate(Base):
     __tablename__ = "exchange_rates"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     sell_currency_id = Column(Integer, ForeignKey("currencies.id"), nullable=False)
     buy_currency_id = Column(Integer, ForeignKey("currencies.id"), nullable=False)
-    rate = Column(Numeric(18, 8), nullable=False)
+    rate = Column(Numeric(18, 2), nullable=False)
+
+    is_active = Column(Boolean, nullable=False, default=True)
 
     sell_currency = relationship(
         "Currency",
@@ -96,7 +98,7 @@ class ExchangeRate(Base):
 class Operation(Base):
     __tablename__ = "operations"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     operation_type = Column(String(30), nullable=False)
