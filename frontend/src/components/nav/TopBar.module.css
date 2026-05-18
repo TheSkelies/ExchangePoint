@@ -57,3 +57,18 @@
         display: inline-flex;
     }
 }
+
+.logoutBtn {
+    margin-left: 10px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 24, 40, 0.12);
+    background: rgba(255, 255, 255, 0.85);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background: rgba(255, 255, 255, 0.95);
+}

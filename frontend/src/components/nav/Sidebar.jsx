@@ -32,6 +32,7 @@ export default function Sidebar({ sidebarState }) {
 
             <nav className={styles.nav}>
                 <div className={styles.sectionTitle}>Меню</div>
+
                 <MenuItem
                     to="/rates"
                     icon={
@@ -45,6 +46,22 @@ export default function Sidebar({ sidebarState }) {
                     onNavigate={close}
                 >
                     Курсы обмена
+                </MenuItem>
+
+                {/* NEW: ссылка на страницу редактирования курсов */}
+                <MenuItem
+                    to="/rates/edit"
+                    icon={
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                            <path
+                                fill="currentColor"
+                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm2.92 2.33H5v-.92l8.06-8.06.92.92L5.92 19.58zM20.71 7.04a1.003 1.003 0 000-1.42l-2.34-2.34a1.003 1.003 0 00-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"
+                            />
+                        </svg>
+                    }
+                    onNavigate={close}
+                >
+                    Редактировать курсы
                 </MenuItem>
 
                 <MenuItem
@@ -63,12 +80,7 @@ export default function Sidebar({ sidebarState }) {
                 </MenuItem>
             </nav>
 
-            <div className={styles.footerHint}>
-                <div className={styles.footerCard}>
-                    <div className={styles.footerTitle}>Курсы обновляются автоматически</div>
-                    <div className={styles.footerText}>Последнее обновление будет из API</div>
-                </div>
-            </div>
+
         </aside>
     );
 }

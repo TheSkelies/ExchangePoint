@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./TopBar.module.css";
 
-export default function TopBar({ onMenuClick }) {
+export default function TopBar({ onMenuClick, isAuthed, onLogout }) {
     const navigate = useNavigate();
 
     return (
@@ -29,6 +29,18 @@ export default function TopBar({ onMenuClick }) {
                     </svg>
                 </div>
             </button>
+
+            {isAuthed && (
+                <button
+                    className={styles.logoutBtn}
+                    onClick={onLogout}
+                    aria-label="Logout"
+                    title="Выйти"
+                    type="button"
+                >
+                    Выйти
+                </button>
+            )}
         </header>
     );
 }
