@@ -1,0 +1,163 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 16, 24, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.modal {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.88));
+    border: 1px solid rgba(16, 24, 40, 0.12);
+    box-shadow: 0 30px 80px rgba(16, 24, 40, 0.25);
+    padding: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.closeBtn {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    border: 1px solid rgba(16, 24, 40, 0.12);
+    background: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.alert {
+    margin-top: 12px;
+    border-radius: 16px;
+    padding: 12px;
+    border: 1px solid rgba(255, 86, 86, 0.25);
+    background: rgba(255, 86, 86, 0.08);
+}
+
+.alertTitle {
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.alertText {
+    font-size: 13px;
+    color: rgba(16, 24, 40, 0.75);
+}
+
+.form {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(16, 24, 40, 0.7);
+}
+
+.input,
+.select {
+    height: 44px;
+    border-radius: 14px;
+    border: 1px solid rgba(16, 24, 40, 0.12);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 800;
+    outline: none;
+}
+
+.input:focus,
+.select:focus {
+    border-color: rgba(77, 160, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(77, 160, 255, 0.18);
+}
+
+.cardBox {
+    margin-top: 4px;
+    border-radius: 16px;
+    border: 1px solid rgba(16, 24, 40, 0.08);
+    background: rgba(247, 249, 255, 0.72);
+    padding: 12px;
+}
+
+.cardTitle {
+    font-weight: 900;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.submitBtn {
+    margin-top: 14px;
+    width: 100%;
+    height: 46px;
+    border-radius: 16px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(180deg, #2f9b55, #228844);
+    box-shadow: 0 18px 34px rgba(34, 136, 68, 0.22);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(16, 24, 40, 0.6);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.loadBtn {
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 24, 40, 0.12);
+    background: rgba(255, 255, 255, 0.85);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.loadBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
