@@ -40,7 +40,7 @@ export const api = {
     },
 
     getExchangeRatesAll: async () => {
-        const resp = await request("/rates/ExchangeRates?include_inactive=true", { method: "GET" });
+        const resp = await request("/rates/AllExchangeRates", { method: "GET" });
         const rates = resp?.rates ?? [];
 
         return rates.map((r) => ({
@@ -51,6 +51,8 @@ export const api = {
             is_active: r.is_active ?? true,
         }));
     },
+
+
 
     updateRate: async ({ id, rate }) => {
         return request(`/rates/${id}`, {
@@ -148,6 +150,11 @@ export const api = {
 
     getOperations: async () => {
         const resp = await request("/operations", { method: "GET" });
+        return resp?.items ?? [];
+    },
+
+    getMyOperations: async () => {
+        const resp = await request("/operations/my", { method: "GET" });
         return resp?.items ?? [];
     },
 
