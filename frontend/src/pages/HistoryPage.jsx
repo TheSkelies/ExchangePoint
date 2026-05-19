@@ -29,7 +29,7 @@ export default function HistoryPage() {
             try {
                 const [currencies, operations] = await Promise.all([
                     api.getCurrencies(),
-                    api.getOperations(),
+                    api.getMyOperations(),
                 ]);
                 if (cancelled) return;
                 setState({ loading: false, error: "", currencies, operations });
@@ -97,7 +97,6 @@ export default function HistoryPage() {
                 <div className={styles.empty}>Пока нет операций</div>
             )}
 
-            {/* currencyById пока не используется в таблице, но уже готов для дальнейшего расширения */}
             <div style={{ display: "none" }}>{currencyById.size}</div>
         </div>
     );
