@@ -7,6 +7,8 @@ function HistoryRowSkeleton() {
     return (
         <div className={styles.skelRow} aria-busy="true">
             <div className={`${styles.skel} ${styles.skelShort}`} />
+            <div className={`${styles.skel} ${styles.skelShort}`} />
+            <div className={`${styles.skel} ${styles.skelShort}`} />
             <div className={`${styles.skel} ${styles.skelMid}`} />
             <div className={`${styles.skel} ${styles.skelLong}`} />
         </div>
@@ -29,8 +31,7 @@ export default function AllHistoryPage() {
             try {
                 const [currencies, operations] = await Promise.all([
                     api.getCurrencies(),
-                    api.getOperations(),
-                ]);
+                    api.getOperations()]);
                 if (cancelled) return;
                 setState({ loading: false, error: "", currencies, operations });
             } catch (e) {
@@ -56,7 +57,6 @@ export default function AllHistoryPage() {
             <div className={styles.head}>
                 <div>
                     <h1 className={styles.title}>История операций</h1>
-                    <div className={styles.subtitle}>Последние операции пользователя</div>
                 </div>
             </div>
 
@@ -70,6 +70,8 @@ export default function AllHistoryPage() {
             <section className={styles.table}>
                 <div className={styles.tableHead}>
                     <div>ID</div>
+                    <div>User ID</div>
+                    <div>Rate ID</div>
                     <div>Тип</div>
                     <div>Дата</div>
                 </div>
@@ -85,6 +87,8 @@ export default function AllHistoryPage() {
                         {state.operations.map((op) => (
                             <div className={styles.row} key={op.id}>
                                 <div className={styles.mono}>#{op.id}</div>
+                                <div className={styles.mono}>#{op.user_id ?? "-"}</div>
+                                <div className={styles.mono}>#{op.rate_id ?? "-"}</div>
                                 <div className={styles.typePill}>{op.operation_type}</div>
                                 <div className={styles.muted}>{formatDateTime(op.created_at)}</div>
                             </div>
@@ -93,9 +97,7 @@ export default function AllHistoryPage() {
                 )}
             </section>
 
-            {!state.loading && state.operations.length === 0 && (
-                <div className={styles.empty}>Пока нет операций</div>
-            )}
+            {!state.loading && state.operations.length === 0 && <div className={styles.empty}>Пока нет операций</div>}
 
             <div style={{ display: "none" }}>{currencyById.size}</div>
         </div>
