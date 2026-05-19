@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout.jsx";
 import RatesPage from "./pages/RatesPage.jsx";
-import YourHistoryPage from "./pages/HistoryPage.jsx";
+import HistoryPage from "./pages/HistoryPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ExchangePage from "./pages/ExchangePage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
@@ -20,7 +20,7 @@ export default function App() {
                 <Route
                     path="/my_history"
                     element={
-                        <YourHistoryPage />
+                        <HistoryPage />
                     }
                 />
                 <Route
