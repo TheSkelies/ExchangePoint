@@ -78,6 +78,7 @@ class ExchangeRate(Base):
     rate = Column(Numeric(18, 2), nullable=False)
 
     is_active = Column(Boolean, nullable=False, default=True)
+    creator_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
 
     sell_currency = relationship(
         "Currency",
@@ -94,6 +95,10 @@ class ExchangeRate(Base):
         back_populates="rate",
         cascade="all, delete-orphan",
     )
+    creator = relationship(
+        "User",
+        foreign_keys=[creator_id])
+
 
 class Operation(Base):
     __tablename__ = "operations"

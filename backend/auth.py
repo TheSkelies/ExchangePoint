@@ -62,8 +62,9 @@ async def get_current_user(
 def require_roles(allowed_roles: Iterable[str]):
     allowed = set(allowed_roles)
 
-    def _checker(current_user: User = Depends(get_current_user)) -> User:
-        if getattr(current_user, "role", None) not in allowed:
+    async def _checker(current_user: User = Depends(get_current_user)) -> User:
+        role = getattr(current_user, "role", None)
+        if role not in allowed:
             raise HTTPException(status_code=403, detail="Недостаточно прав")
         return current_user
 

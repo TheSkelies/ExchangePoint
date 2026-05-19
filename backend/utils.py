@@ -39,4 +39,5 @@ def exchange_rate_to_response(rate):
         "buy_currency_id": rate.buy_currency_id,
         "rate": float(rate.rate),
         "is_active": bool(getattr(rate, "is_active", True)),
+        "creator_id": rate.creator_id,
     }

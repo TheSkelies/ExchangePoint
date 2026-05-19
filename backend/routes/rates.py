@@ -77,6 +77,7 @@ def create_rate(
         .filter(
             ExchangeRate.sell_currency_id == data.sell_currency_id,
             ExchangeRate.buy_currency_id == data.buy_currency_id,
+            ExchangeRate.rate == data.rate,
         )
         .first()
     )
@@ -84,18 +85,14 @@ def create_rate(
     if existing and existing.is_active:
         raise HTTPException(status_code=400, detail="Курс для этой пары валют уже существует")
 
-    if existing and not existing.is_active:
-        existing.is_active = True
-        existing.rate = data.rate
-        db.commit()
-        db.refresh(existing)
-        return exchange_rate_to_response(existing)
+
 
     row = ExchangeRate(
         sell_currency_id=data.sell_currency_id,
         buy_currency_id=data.buy_currency_id,
         rate=data.rate,
         is_active=True,
+        creator_id=user.id,
     )
     db.add(row)
     db.commit()
@@ -116,6 +113,9 @@ def update_rate(
     if not row.is_active:
         raise HTTPException(status_code=400, detail="Курс неактивен (удалён)")
 
+    if row.creator_id != user.id:
+        raise HTTPException(status_code=403, detail="Редактировать курс может только его создатель")
+
     row.rate = data.rate
     db.commit()
     db.refresh(row)
@@ -132,6 +132,9 @@ def soft_delete_rate(
     row = db.query(ExchangeRate).filter(ExchangeRate.id == rate_id).first()
     if not row:
         raise HTTPException(status_code=404, detail="Курс не найден")
+
+    if row.creator_id != user.id:
+        raise HTTPException(status_code=403, detail="Удалять курс может только его создатель")
 
     row.is_active = False
     db.commit()
