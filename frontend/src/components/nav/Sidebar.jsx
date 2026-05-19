@@ -48,7 +48,21 @@ export default function Sidebar({ sidebarState }) {
                     Курсы обмена
                 </MenuItem>
 
-                {/* NEW: ссылка на страницу редактирования курсов */}
+                <MenuItem
+                    to="/my_history"
+                    icon={
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                            <path
+                                fill="currentColor"
+                                d="M12 8v5l4 2-.8 1.8L10 14V8h2zM12 2a10 10 0 1010 10h-2a8 8 0 11-2.3-5.7L15 9h7V2l-2.7 2.7A9.96 9.96 0 0012 2z"
+                            />
+                        </svg>
+                    }
+                    onNavigate={close}
+                >
+                    Твоя история операций
+                </MenuItem>
+
                 <MenuItem
                     to="/rates/edit"
                     icon={
@@ -64,8 +78,9 @@ export default function Sidebar({ sidebarState }) {
                     Редактировать курсы
                 </MenuItem>
 
+
                 <MenuItem
-                    to="/history"
+                    to="/all_history"
                     icon={
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                             <path
@@ -76,7 +91,7 @@ export default function Sidebar({ sidebarState }) {
                     }
                     onNavigate={close}
                 >
-                    История операций
+                    Вся история операций
                 </MenuItem>
             </nav>
 
