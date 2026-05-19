@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import ProtectedRoute from "./components/routing/ProtectedRoute.jsx";
 import EditRates from "./pages/EditRates.jsx";
+import AllHistoryPage from "./pages/AllHistoryPage.jsx";
 
 export default function App() {
     return (
@@ -17,11 +18,9 @@ export default function App() {
                 <Route path="/rates" element={<RatesPage />} />
                 <Route path="/exchange/:rateId" element={<ExchangePage />} />
                 <Route
-                    path="/history"
+                    path="/my_history"
                     element={
-                    <ProtectedRoute allowedRoles={["seller"]}>
                         <HistoryPage />
-                    </ProtectedRoute>
                     }
                 />
                 <Route
@@ -37,6 +36,14 @@ export default function App() {
                     element={
                         <ProtectedRoute allowedRoles={["seller"]}>
                             <EditRates />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/all_history"
+                    element={
+                        <ProtectedRoute allowedRoles={["seller"]}>
+                            <AllHistoryPage />
                         </ProtectedRoute>
                     }
                 />
