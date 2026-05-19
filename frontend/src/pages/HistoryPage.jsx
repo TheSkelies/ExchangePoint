@@ -15,7 +15,7 @@ function HistoryRowSkeleton() {
     );
 }
 
-export default function HistoryPage() {
+export default function YourHistoryPage() {
     const [state, setState] = useState({
         loading: true,
         error: "",
@@ -41,6 +41,8 @@ export default function HistoryPage() {
         }
 
         load();
+
+
         return () => {
             cancelled = true;
         };
