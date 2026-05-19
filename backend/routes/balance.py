@@ -4,7 +4,7 @@ from decimal import Decimal
 from sqlalchemy.orm import Session
 
 from database import get_db
-from auth import get_current_user
+from auth import get_current_user, require_roles
 from models import User, UserBalance, Currency
 
 router = APIRouter(prefix="/api/balances", tags=["balances"])
@@ -43,6 +43,7 @@ def top_up_balance(
     body: TopUpBody,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    user: User = Depends(require_roles(["user"])),
 ):
     currency = db.query(Currency).filter(Currency.id == body.currency_id).first()
     if not currency:

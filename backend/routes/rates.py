@@ -4,7 +4,8 @@ from pydantic import BaseModel, Field
 from decimal import Decimal
 
 from database import get_db
-from models import ExchangeRate
+from models import ExchangeRate, User
+from auth import require_roles
 from utils import exchange_rate_to_response
 
 router = APIRouter(prefix="/api/rates", tags=["rates"])
@@ -46,10 +47,27 @@ async def get_rates(
     return {"rates": items}
 
 
+@router.get("/AllExchangeRates")
+async def get_all_rates(
+    db: Session = Depends(get_db),
+    user: User = Depends(require_roles(["seller"])),
+):
+    query = db.query(ExchangeRate)
+
+
+    items = []
+    for rate in query.all():
+        item = exchange_rate_to_response(rate)
+        items.append(item)
+
+    return {"rates": items}
+
+
 @router.post("")
 def create_rate(
     data: ExchangeRateCreate,
     db: Session = Depends(get_db),
+    user: User = Depends(require_roles(["seller"])),
 ):
     if data.sell_currency_id == data.buy_currency_id:
         raise HTTPException(status_code=400, detail="Валюты должны быть разными")
@@ -90,6 +108,7 @@ def update_rate(
     rate_id: int,
     data: ExchangeRateUpdate,
     db: Session = Depends(get_db),
+    user: User = Depends(require_roles(["seller"])),
 ):
     row = db.query(ExchangeRate).filter(ExchangeRate.id == rate_id).first()
     if not row:
@@ -108,6 +127,7 @@ def update_rate(
 def soft_delete_rate(
     rate_id: int,
     db: Session = Depends(get_db),
+    user: User = Depends(require_roles(["seller"])),
 ):
     row = db.query(ExchangeRate).filter(ExchangeRate.id == rate_id).first()
     if not row:

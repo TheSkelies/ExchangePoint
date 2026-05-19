@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from database import get_db
-from auth import get_current_user
+from auth import get_current_user, require_roles
 from models import User, Operation
 
 router = APIRouter(prefix="/api/operations", tags=["operations"])
@@ -34,7 +34,8 @@ def get_my_operations(
 
 @router.get("")
 def get_all_operations(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user: User = Depends(require_roles(["seller"])),
 ):
     rows = db.query(Operation).order_by(Operation.created_at.desc()).all()
 

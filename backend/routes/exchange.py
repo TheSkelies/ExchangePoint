@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from database import get_db
-from auth import get_current_user
+from auth import get_current_user, require_roles
 from models import User, UserBalance, ExchangeRate, Operation
 
 router = APIRouter(prefix="/api/exchange", tags=["exchange"])
@@ -18,6 +18,7 @@ def confirm_exchange(
     body: ConfirmExchangeBody,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    user: User = Depends(require_roles(["user"])),
 ):
     rate = db.query(ExchangeRate).filter(ExchangeRate.id == body.rate_id).first()
     if not rate:

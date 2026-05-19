@@ -2,7 +2,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from database import get_db
-from models import Currency
+from models import Currency, User
+from auth import require_roles
 from utils import currency_to_response
 
 router = APIRouter(prefix="/api/currencies", tags=["currencies"])
@@ -23,7 +24,9 @@ class CurrenciesToRespond(BaseModel):
 @router.post("", response_model=CurrenciesCreate)
 async def create_exchange_currency(
         data: CurrenciesCreate,
-        db: Session = Depends(get_db)):
+        db: Session = Depends(get_db),
+        user: User = Depends(require_roles(["seller"])),
+):
     new_currency = Currency(
         name=data.name,
     )

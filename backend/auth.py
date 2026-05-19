@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
+from typing import Iterable
 import bcrypt
 from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -57,3 +58,13 @@ async def get_current_user(
     if not user:
         raise HTTPException(status_code=404, detail="Пользователь не найден")
     return user
+
+def require_roles(allowed_roles: Iterable[str]):
+    allowed = set(allowed_roles)
+
+    def _checker(current_user: User = Depends(get_current_user)) -> User:
+        if getattr(current_user, "role", None) not in allowed:
+            raise HTTPException(status_code=403, detail="Недостаточно прав")
+        return current_user
+
+    return _checker
