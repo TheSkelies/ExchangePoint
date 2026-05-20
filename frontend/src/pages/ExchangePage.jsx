@@ -160,7 +160,6 @@ export default function ExchangePage() {
                             <div className={styles.ratePill}>{formatRatePair(state.rate.rate)}</div>
                         </div>
 
-                        <div className={styles.pairSubtitle}>{subtitle}</div>
                     </div>
                 )}
             </section>
