@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from database import get_db
@@ -27,9 +27,16 @@ async def create_exchange_currency(
         db: Session = Depends(get_db),
         user: User = Depends(require_roles(["seller"])),
 ):
-    new_currency = Currency(
-        name=data.name,
-    )
+    name = (data.name or "").strip().upper()
+
+    if len(name) != 3 or not name.isalpha():
+        raise HTTPException(status_code=400, detail="Название валюты должно быть из 3 заглавных букв (например, USD)")
+
+    exists = db.query(Currency).filter(Currency.name == name).first()
+    if exists:
+        raise HTTPException(status_code=400, detail="Такая валюта уже существует")
+
+    new_currency = Currency(name=name)
 
     db.add(new_currency)
     db.commit()
