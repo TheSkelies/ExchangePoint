@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import ProtectedRoute from "./components/routing/ProtectedRoute.jsx";
 import EditRates from "./pages/EditRates.jsx";
 import AllHistoryPage from "./pages/AllHistoryPage.jsx";
+import CurrenciesPage from "./pages/CurrenciesPage.jsx";
 
 export default function App() {
     return (
@@ -47,6 +48,7 @@ export default function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/currencies" element={<CurrenciesPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<Navigate to="/rates" replace />} />

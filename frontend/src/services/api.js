@@ -190,4 +190,12 @@ export const api = {
     getMyCard: async () => {
         return request("/auth/me/card", { method: "GET" });
     },
+
+    createCurrency: async ({ name }) => {
+        const cleaned = String(name ?? "").trim().toUpperCase();
+        return request("/currencies", {
+            method: "POST",
+            body: JSON.stringify({ name: cleaned }),
+        });
+    },
 };

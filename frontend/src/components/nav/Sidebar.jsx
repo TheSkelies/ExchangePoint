@@ -93,6 +93,21 @@ export default function Sidebar({ sidebarState }) {
                 >
                     Вся история операций
                 </MenuItem>
+
+                <MenuItem
+                    to="/currencies"
+                    icon={
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                            <path
+                                fill="currentColor"
+                                d="M12 1a11 11 0 1011 11A11 11 0 0012 1zm1 17.93V20h-2v-1.07a8.95 8.95 0 01-3.6-1.4l1-1.73A7.1 7.1 0 0011 16.9V13H9a3 3 0 010-6h2V4h2v3h2.2a6.5 6.5 0 012.5.6l-.8 1.8A5.3 5.3 0 0015.2 9H13v4h2a3 3 0 010 6h-2z"
+                            />
+                        </svg>
+                    }
+                    onNavigate={close}
+                >
+                    Валюты
+                </MenuItem>
             </nav>
 
 
