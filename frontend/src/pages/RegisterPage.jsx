@@ -58,7 +58,6 @@ export default function RegisterPage() {
 
             setState({ submitting: false, error: "", success: "Аккаунт создан. Теперь можно войти." });
 
-            // можно сразу редиректить:
             setTimeout(() => navigate("/login"), 600);
         } catch (err) {
             setState({
@@ -184,7 +183,7 @@ export default function RegisterPage() {
                 </Link>
 
                 <div className={styles.hint}>
-                    Пароль должен быть минимум 3 символа. Поле “Отчество” можно не заполнять.
+                    Пароль должен быть минимум 6 символов. Поле “Отчество” можно не заполнять.
                 </div>
             </form>
         </div>
