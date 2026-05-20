@@ -58,7 +58,7 @@ class UserBalance(Base):
 
     user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
     currency_id = Column(Integer, ForeignKey("currencies.id"), primary_key=True)
-    balance = Column(Numeric(18, 2), nullable=False, default=0)
+    balance = Column(Numeric(18, 8), nullable=False, default=0)
 
     user = relationship(
         "User",
